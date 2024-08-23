@@ -21,13 +21,21 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     public User createUser(User user) {
         return userRepository.save(user);
     }
 
     public User updateUser(Long id, User user) {
         if (userRepository.existsById(id)) {
-            user.setId(id);
+            user.setUserID(id);
             return userRepository.save(user);
         }
         return null;
