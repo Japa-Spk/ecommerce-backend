@@ -47,8 +47,6 @@ public class Product {
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     private Inventory inventory;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<PriceHistory> priceHistories;
 
     // Getters y Setters
 }
