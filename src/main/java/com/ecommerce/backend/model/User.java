@@ -61,6 +61,8 @@ public class User implements UserDetails {
         return List.of();
     }
 
+    // Getters y Setters
+
     public String getPassword() {
         return password;
     }

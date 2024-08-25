@@ -37,7 +37,6 @@ public class AuthenticationService {
             .setAddress(input.getAddress())
             .setPhone(input.getPhone())
             .setRole(input.getRole());
-            System.out.println(user.toString());
         return userRepository.save(user);
     }
 

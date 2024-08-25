@@ -1,5 +1,7 @@
 package com.ecommerce.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 public class OrderDetail {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderDetailID;
@@ -29,6 +31,7 @@ public class OrderDetail {
     // Relaciones
     @ManyToOne
     @JoinColumn(name = "orderID")
+    @JsonIgnore
     private Order order;
 
     @ManyToOne
@@ -36,4 +39,58 @@ public class OrderDetail {
     private Product product;
 
     // Getters y Setters
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public OrderDetail setQuantity(int quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public OrderDetail setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+        return this;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public OrderDetail setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+        return this;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public OrderDetail setOrderId(Order order) {
+        this.order = order;
+        return this;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public OrderDetail setProduct(Product product) {
+        this.product = product;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "quantity='" + quantity + '\'' +
+                ", unitPrice='" + unitPrice + '\'' +
+                ", subtotal='" + subtotal + '\'' +
+                ", productID='" + product.getProductID() + '\'' +
+                '}';
+    }
 }
