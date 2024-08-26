@@ -29,6 +29,9 @@ public class AuthenticationService {
     }
 
     public User signup(RegisterUserDto input) {
+        if (userRepository.existsByEmail(input.getEmail())) {
+            throw new RuntimeException("El usuario a registrar ya existe: " + input.getEmail());
+        }
         var user = new User()
             .setFirstName(input.getFirstName())
             .setLastName(input.getLastName())
